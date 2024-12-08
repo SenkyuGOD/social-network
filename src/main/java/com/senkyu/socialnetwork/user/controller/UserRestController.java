@@ -47,5 +47,10 @@ public class UserRestController {
     public UserDto patch(@PathVariable Long id, @RequestBody JsonNode patchNode) throws IOException {
         return userService.patch(id, patchNode);
     }
+
+    @GetMapping("/{id}")
+    public UserDto getOne(@PathVariable Long id) {
+        return userService.getOne(id);
+    }
 }
 

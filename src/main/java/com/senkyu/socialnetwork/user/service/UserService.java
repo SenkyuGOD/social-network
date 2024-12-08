@@ -18,4 +18,6 @@ public interface UserService {
     UserDto delete(Long id);
 
     UserDto patch(Long id, JsonNode patchNode) throws IOException;
+
+    UserDto getOne(Long id);
 }

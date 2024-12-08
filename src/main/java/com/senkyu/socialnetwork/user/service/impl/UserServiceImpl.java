@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 @Service
@@ -74,5 +75,12 @@ public class UserServiceImpl implements UserService {
 
         User resultUser = userRepository.save(user);
         return userMapper.toUserDto(resultUser);
+    }
+
+    @Override
+    public UserDto getOne(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        return userMapper.toUserDto(userOptional.orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity with id `%s` not found".formatted(id))));
     }
 }
